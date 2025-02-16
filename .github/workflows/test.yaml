@@ -1,0 +1,19 @@
+name: Azure CLI Key Vault Access
+
+on:
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  azure-auth:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Authenticate to Azure using Managed Identity
+        run: |
+          az login --identity --username ${{ secrets.AZURE_CLIENT_ID }} --tenant 
+          echo "Logged into Azure using managed identity."
+
+      - name: Fetch secrets from Azure Key Vault
+        run: |
+          SECRET_VALUE=$(az keyvault secret show --name "pilot-test-secret" --vault-name "pilot-kv-main" --query "value" -o tsv)
+          echo "Fetched secret successfully."
