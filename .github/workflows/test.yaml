@@ -17,9 +17,17 @@ jobs:
       #     tenant-id: 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d
       #     allow-no-subscriptions: true
 
-      - name: az login cli
-        run: |
-          az login --service-principal --username 9de2854e-ce2d-422a-9ebf-514077017382 --tenant 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d --federated-token $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+      # WORKS
+      # - name: az login cli
+      #   run: |
+      #     az login --service-principal --username 9de2854e-ce2d-422a-9ebf-514077017382 --tenant 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d --federated-token $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: 4722d169-f7d5-44f6-88d4-bfd24adce7f8
+          tenant-id: 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d
+          allow-no-subscriptions: true
 
       - name: Fetch secrets from Azure Key Vault
         run: |
