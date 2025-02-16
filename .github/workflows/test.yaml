@@ -3,12 +3,11 @@ name: Azure CLI Key Vault Access
 on:
   workflow_dispatch:  # Allows manual trigger
 
-permissions:
-  id-token: write
-
 jobs:
   azure-auth:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
 
       # - name: Azure login
@@ -20,7 +19,7 @@ jobs:
 
       - name: az login cli
         run: |
-          az login --service-principal --username 9de2854e-ce2d-422a-9ebf-514077017382 --tenant 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d
+          az login --service-principal --username 9de2854e-ce2d-422a-9ebf-514077017382 --tenant 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d --federated-token $ACTIONS_ID_TOKEN_REQUEST_TOKEN
 
       - name: Fetch secrets from Azure Key Vault
         run: |
