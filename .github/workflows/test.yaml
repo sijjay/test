@@ -10,7 +10,7 @@ jobs:
 
       - name: Authenticate to Azure using Managed Identity
         run: |
-          az login --identity --username 4722d169-f7d5-44f6-88d4-bfd24adce7f8 --tenant 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d
+          az login --identity --username 4722d169-f7d5-44f6-88d4-bfd24adce7f8
           echo "Logged into Azure using managed identity."
 
       - name: Fetch secrets from Azure Key Vault
