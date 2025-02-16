@@ -3,6 +3,9 @@ name: Azure CLI Key Vault Access
 on:
   workflow_dispatch:  # Allows manual trigger
 
+permissions:
+  id-token: write
+
 jobs:
   azure-auth:
     runs-on: ubuntu-latest
