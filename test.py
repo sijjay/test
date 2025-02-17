@@ -42,6 +42,7 @@ def get_azure_access_token(federated_token):
         "subject_token_type": "urn:ietf:params:oauth:token-type:access_token",
         "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
         "scope": "https://management.azure.com/.default https://vault.azure.net/.default",
+        "requested_token_use": "on_behalf_of"
     }
 
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
