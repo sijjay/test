@@ -37,14 +37,23 @@ jobs:
       #     echo "Fetched secret successfully."
       #     echo "${SECRET_VALUE}"
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install azure-identity requests
+
       - name: Fetch secrets from Azure Key Vault
         env:
           AZURE_CLIENT_ID: 4722d169-f7d5-44f6-88d4-bfd24adce7f8
           AZURE_TENANT_ID: 0e7f6f8b-dfc2-4a5d-9c14-6f3eb7a8fe8d
           AZURE_KEY_VAULT_NAME: "pilot-kv-main"
           AZURE_SECRET_NAME: "pilot-test-secret"
-        run: |
-          pip install azure-identity requests
-          python test.py
+        run: python test.py
 
       
