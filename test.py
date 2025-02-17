@@ -39,7 +39,7 @@ def get_azure_access_token(federated_token):
         "grant_type": "client_credentials",  # ✅ Change grant type
         "client_assertion": federated_token,  # ✅ Use GitHub OIDC token directly
         "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-        "scope": "https://management.azure.com/.default",
+        "scope": "https://vault.azure.net/.default",
         "requested_token_use": "on_behalf_of"
     }
 
