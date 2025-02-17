@@ -35,10 +35,10 @@ def get_github_oidc_token():
 def get_azure_access_token(federated_token):
     """Exchanges the GitHub federated token for an Azure access token"""
     payload = {
-        "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
         "client_id": CLIENT_ID,
+        "grant_type": "client_credentials",  # ✅ Change grant type
+        "client_assertion": federated_token,  # ✅ Use GitHub OIDC token directly
         "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-        "assertion": federated_token,
         "scope": "https://management.azure.com/.default https://vault.azure.net/.default",
         "requested_token_use": "on_behalf_of"
     }
