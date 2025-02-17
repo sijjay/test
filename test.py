@@ -37,7 +37,8 @@ def get_azure_access_token(federated_token):
     payload = {
         "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
         "client_id": CLIENT_ID,
-        "subject_token": federated_token,
+        "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+        "assertion": federated_token,
         "subject_token_type": "urn:ietf:params:oauth:token-type:access_token",
         "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
         "scope": "https://management.azure.com/.default https://vault.azure.net/.default",
